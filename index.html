@@ -1,16 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BATTLE ROYALE - Официальный сайт</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="nav-left">
+            <a href="#" class="logo">
+                <img src="goldenheart.png" alt="Logo" class="logo-icon">
+                <div class="logo-text">Battle Royale</div>
+            </a>
+            <div class="nav-menu">
+                <div class="nav-btn" onclick="copyIP()">📋 IP Сервера</div>
+                <a href="#instructions" class="nav-btn">Инструкция</a>
+                <a                 <a href="#resources" class="nav-btn">Ресурс-паки</a>
+                <a href="#custom" class="nav-btn">Кастомки</a>
+            </div>
+        </div>
+        <div class="discord-container">
+            <a href="https://discord.gg/ekBtr6rxMH" class="discord-header-btn" target="_blank">
+                <span>💬</span>
+                <span>Discord</span>
+            </a>
+        </div>
+    </header>
 
-    <h1>hello</h1>
-    <p>this is my website about my minecraft server</p>
-    <h2>server ip: qq666.aternos.me</h2>
-    
-    
+    <section class="hero">
+    </section>
+
+    <section class="instructions" id="instructions">
+        <h2 class="section-title">Как играть</h2>
+        <p class="section-subtitle">Три простых шага к победе</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Подключись к серверу</h3>
+                    <p>Введи IP адрес в Minecraft и войди в сервер. Дождись заполнения игры и начала матча!</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Лутайся и выживай</h3>
+                    <p>Начало игры, собирай лут, оружие и броню. Избегай других игроков в начале или вступай в бой за лучшие ресурсы!</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Стань последним выжившим</h3>
+                    <p>Следуй за сужающейся зоной, сражайся с противниками и используй тактику. Останься последним — и победа твоя!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="game-modes" id="game-modes">
+        <h2 class="section-title">Режимы</h2>
+        <p class="section-subtitle">Кастомные режимы игры</p>
+        <div class="modes-grid">
+            <div class="mode-card">
+                <h3 style="color: #FF8C00; margin-bottom: 10px;">Режим нормалды</h3>
+                <p>Самая обычная игра: есть соло, дуо, трио</p>
+            </div>
+            <div class="mode-card">
+                <h3 style="color: #4a4a4a; margin-bottom: 10px;">Режим инкогнито</h3>
+                <p>Все также как в нормалды, но ники скрыты и не понятно что за игроки</p>
+            </div>
+            <div class="mode-card">
+                <h3 style="color: #FF69B4; margin-bottom: 10px;">Режим коалиций</h3>
+                <p>Все начинают по 1 и могут объединяться в большие кланы для победы</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources" id="resources">
+        <h2 class="section-title">Ресурс-паки</h2>
+        <p class="section-subtitle">Скачай текстуры для КБ</p>
+        <div class="resources-grid">
+            <div class="resource-card" style="grid-column: 1 / -1;">
+                <div class="resource-icon">🎮</div>
+                <h3>Ресурс паки королевской битвы</h3>
+                <p style="color: red; font-weight: bold; margin-bottom: 15px;">⚠️ Нужен OptiFine!</p>
+                <p style="margin-bottom: 20px; line-height: 1.6;">
+                    Для установки нужно скачать ресурс пак и открыть zip файл "Открой меня"<br>
+                    Внутри будет 3 zip файла, их нужно закинуть в resource-packs<br>
+                    Полная инструкция на Discord сервере
+                </p>
+                <a href="Открой меня.zip" class="resource-download">Скачать</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="custom-section" id="custom">
+        <h2 class="section-title">Кастомки</h2>
+        <p class="section-subtitle">Эксклюзивные предметы сервера</p>
+        
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('legendary-weapons')">
+                    <h3>Легендарные оружия</h3>
+                    <span class="accordion-arrow">v</span>
+                </button>
+                <div class="accordion-content" id="legendary-weapons">
+                    <div class="weapon-container">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Dragon Katana</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="dragon_katana.png" alt="Dragon Katana">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Shadow Blade</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="shadow_blade.png" alt="Shadow Blade">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Aphrodite Blade</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Когда объединяете с сердцем то повышается уровень</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="aphrodite_blade.png" alt="Aphrodite Blade">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Toxic Lantern Chainsword</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="toxic_lantern_chainsword.png" alt="Toxic Lantern Chainsword">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Ender Bow</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Стрелы телепортируются к цели и наносят двойной урон</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="ender_bow.png" alt="Ender Bow">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Atremis Bow</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="artemis_bow.png" alt="Atremis Bow">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Sonic Crossbow</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="sonic_crossbow.png" alt="Sonic Crossbow">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Ender Cannon</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="ender_cannon.png" alt="Ender Cannon">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeWeapon(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Turbo Turkey</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание способности...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <img src="turbo_turkey.png" alt="Turbo Turkey">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeWeapon(1)">›</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('custom-crafts')">
+                    <h3>Кастомные крафты</h3>
+                    <span class="accordion-arrow">v</span>
+                </button>
+                <div class="accordion-content" id="custom-crafts">
+                    <div class="legendary-grid">
+                        <div class="legendary-item">
+                            <button class="legendary-btn" onclick="toggleLegendary('custom-1')">
+                                <span class="legendary-number">1</span>
+                                <span class="legendary-arrow">v</span>
+                            </button>
+                            <div class="legendary-content" id="custom-1">
+                                <div class="legendary-image"></div>
+                                <div class="legendary-info">
+                                    <h4>Кастомный крафт 1</h4>
+                                    <p>Описание кастомного крафта 1...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legendary-item">
+                            <button class="legendary-btn" onclick="toggleLegendary('custom-2')">
+                                <span class="legendary-number">2</span>
+                                <span class="legendary-arrow">v</span>
+                            </button>
+                            <div class="legendary-content" id="custom-2">
+                                <div class="legendary-image"></div>
+                                <div class="legendary-info">
+                                    <h4>Кастомный крафт 2</h4>
+                                    <p>Описание кастомного крафта 2...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legendary-item">
+                            <button class="legendary-btn" onclick="toggleLegendary('custom-3')">
+                                <span class="legendary-number">3</span>
+                                <span class="legendary-arrow">v</span>
+                            </button>
+                            <div class="legendary-content" id="custom-3">
+                                <div class="legendary-image"></div>
+                                <div class="legendary-info">
+                                    <h4>Кастомный крафт 3</h4>
+                                    <p>Описание кастомного крафта 3...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legendary-item">
+                            <button class="legendary-btn" onclick="toggleLegendary('custom-4')">
+                                <span class="legendary-number">4</span>
+                                <span class="legendary-arrow">v</span>
+                            </button>
+                            <div class="legendary-content" id="custom-4">
+                                <div class="legendary-image"></div>
+                                <div class="legendary-info">
+                                    <h4>Кастомный крафт 4</h4>
+                                    <p>Описание кастомного крафта 4...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legendary-item">
+                            <button class="legendary-btn" onclick="toggleLegendary('custom-5')">
+                                <span class="legendary-number">5</span>
+                                <span class="legendary-arrow">v</span>
+                            </button>
+                            <div class="legendary-content" id="custom-5">
+                                <div class="legendary-image"></div>
+                                <div class="legendary-info">
+                                    <h4>Кастомный крафт 5</h4>
+                                    <p>Описание кастомного крафта 5...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="discord-section">
+        <h2 class="section-title">Присоединяйся к сообществу</h2>
+        <p style="color: #333; margin-bottom: 40px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Найди команду, узнавай о битвах первым и общайся с игроками</p>
+        <a href="https://discord.gg/ekBtr6rxMH" class="discord-btn" target="_blank">
+            <span>💬</span>
+            <span>Вступить в Discord</span>
+        </a>
+    </section>
+
+    <footer>
+        <p>© 2026 Battle Royale Server. Все вопросы к bat</p>
+        <p>Minecraft Server</p>
+        <p><a href="#">Правила сервера</a> | <a href="#">Что будет с читерами</a></p>
+    </footer>
+
+    <div class="notification" id="notification">✓ IP скопирован в буфер обмена!</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
