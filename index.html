@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BATTLE ROYALE - Официальный сайт</title>
+    <title>BATTLE ROYALE</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,6 +29,24 @@
     </header>
 
     <section class="hero">
+        <div class="hero-title">
+            <div class="crown-icon">👑</div>
+            <h1 class="hero-main-title">BATTLE ROYALE</h1>
+        </div>
+        <div class="ip-wrapper" onclick="copyIP()">
+            <div class="ip-inner-container">
+                <span class="ip-value">ip.gg</span>
+                <div class="version-container">
+                    <div class="version-box">
+                        <span class="version-label">Версия:</span>
+                        <span class="version-number">1.21.11</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToInstructions()">
+            <span class="scroll-arrow">⬇</span>
+        </div>
     </section>
 
     <section class="instructions" id="instructions">
@@ -87,7 +105,7 @@
                 <h3>Ресурс паки королевской битвы</h3>
                 <p style="color: red; font-weight: bold; margin-bottom: 15px;">⚠️ Нужен OptiFine!</p>
                 <p style="margin-bottom: 20px; line-height: 1.6;">
-                    Для установки нужно скачать ресурс пак и открыть zip файл "Открой меня"<br>
+                    Для установки нужно скачать ресурс пак и открыть zip файл<br>
                     Внутри будет 3 zip файла, их нужно закинуть в resource-packs<br>
                     Полная инструкция на Discord сервере
                 </p>
@@ -115,7 +133,7 @@
                                     <h3 class="weapon-name">Dragon Katana</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>При нажатий ПКМ телепорт на 10 блоков вперед перезарядка 15 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -133,7 +151,7 @@
                                     <h3 class="weapon-name">Shadow Blade</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>При нажатий ПКМ накладывает эффекты игроку невидимость и скорость на 10 сек а противникам тьму на 10 сек перезарядка 60 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -169,7 +187,7 @@
                                     <h3 class="weapon-name">Toxic Lantern Chainsword</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>При ударе игрока на шифте переключается на режим отравления на 10 сек каждый удар накладывает эффект отравления перезарядка 60 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -187,7 +205,7 @@
                                     <h3 class="weapon-name">Ender Bow</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Стрелы телепортируются к цели и наносят двойной урон</p>
+                                        <p>Переключение режима на телепорт и обратно Шифт+ПКМ режим телепортаций запускает эндер перл с презарядкой 30 сек режим стрельбы лук сила 4 </p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -205,7 +223,7 @@
                                     <h3 class="weapon-name">Atremis Bow</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>При стрельбе есть шанс призвать молний зачарования сила 3 откидывание 1</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -223,7 +241,7 @@
                                     <h3 class="weapon-name">Sonic Crossbow</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>Выпускает мощный выстрел вардена при стрельбе перезарядка 30 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -241,7 +259,7 @@
                                     <h3 class="weapon-name">Ender Cannon</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>Выстреливет шаром дракона который оставляет след где взорвался перезарядка 50 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -259,7 +277,7 @@
                                     <h3 class="weapon-name">Turbo Turkey</h3>
                                     <div class="weapon-abilities">
                                         <h4>Способности:</h4>
-                                        <p>Описание способности...</p>
+                                        <p>При нажатий ПКМ запускает турбо цыпленка который летит и взрывается преарядка 30 сек</p>
                                     </div>
                                 </div>
                                 <div class="weapon-image">
@@ -278,72 +296,167 @@
                     <span class="accordion-arrow">v</span>
                 </button>
                 <div class="accordion-content" id="custom-crafts">
-                    <div class="legendary-grid">
-                        <div class="legendary-item">
-                            <button class="legendary-btn" onclick="toggleLegendary('custom-1')">
-                                <span class="legendary-number">1</span>
-                                <span class="legendary-arrow">v</span>
-                            </button>
-                            <div class="legendary-content" id="custom-1">
-                                <div class="legendary-image"></div>
-                                <div class="legendary-info">
-                                    <h4>Кастомный крафт 1</h4>
-                                    <p>Описание кастомного крафта 1...</p>
+                    <div class="weapon-container">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="legendary-item">
-                            <button class="legendary-btn" onclick="toggleLegendary('custom-2')">
-                                <span class="legendary-number">2</span>
-                                <span class="legendary-arrow">v</span>
-                            </button>
-                            <div class="legendary-content" id="custom-2">
-                                <div class="legendary-image"></div>
-                                <div class="legendary-info">
-                                    <h4>Кастомный крафт 2</h4>
-                                    <p>Описание кастомного крафта 2...</p>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="legendary-item">
-                            <button class="legendary-btn" onclick="toggleLegendary('custom-3')">
-                                <span class="legendary-number">3</span>
-                                <span class="legendary-arrow">v</span>
-                            </button>
-                            <div class="legendary-content" id="custom-3">
-                                <div class="legendary-image"></div>
-                                <div class="legendary-info">
-                                    <h4>Кастомный крафт 3</h4>
-                                    <p>Описание кастомного крафта 3...</p>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="legendary-item">
-                            <button class="legendary-btn" onclick="toggleLegendary('custom-4')">
-                                <span class="legendary-number">4</span>
-                                <span class="legendary-arrow">v</span>
-                            </button>
-                            <div class="legendary-content" id="custom-4">
-                                <div class="legendary-image"></div>
-                                <div class="legendary-info">
-                                    <h4>Кастомный крафт 4</h4>
-                                    <p>Описание кастомного крафта 4...</p>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="legendary-item">
-                            <button class="legendary-btn" onclick="toggleLegendary('custom-5')">
-                                <span class="legendary-number">5</span>
-                                <span class="legendary-arrow">v</span>
-                            </button>
-                            <div class="legendary-content" id="custom-5">
-                                <div class="legendary-image"></div>
-                                <div class="legendary-info">
-                                    <h4>Кастомный крафт 5</h4>
-                                    <p>Описание кастомного крафта 5...</p>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
                                 </div>
                             </div>
                         </div>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
+                    </div>
+                    <div class="weapon-container" style="display: none;">
+                        <button class="nav-arrow left" onclick="changeCustomCraft(-1)">‹</button>
+                        <div class="weapon-card">
+                            <div class="weapon-card-border">
+                                <div class="weapon-info">
+                                    <h3 class="weapon-name">Название</h3>
+                                    <div class="weapon-abilities">
+                                        <h4>Способности:</h4>
+                                        <p>Описание...</p>
+                                    </div>
+                                </div>
+                                <div class="weapon-image">
+                                    <div class="weapon-image-placeholder"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="nav-arrow right" onclick="changeCustomCraft(1)">›</button>
                     </div>
                 </div>
             </div>
@@ -362,7 +475,7 @@
     <footer>
         <p>© 2026 Battle Royale Server. Все вопросы к bat</p>
         <p>Minecraft Server</p>
-        <p><a href="#">Правила сервера</a> | <a href="#">Что будет с читерами</a></p>
+        <p><a href="#">Правила сервера</a> | <a href="#">666</a></p>
     </footer>
 
     <div class="notification" id="notification">✓ IP скопирован в буфер обмена!</div>
