@@ -12,6 +12,10 @@ function copyIP() {
     });
 }
 
+function scrollToInstructions() {
+    document.getElementById('instructions').scrollIntoView({ behavior: 'smooth' });
+}
+
 function toggleAccordion(id) {
     const content = document.getElementById(id);
     const header = content.previousElementSibling;
@@ -45,6 +49,25 @@ function changeWeapon(direction) {
     
     containers.forEach((container, index) => {
         container.style.display = index === currentWeapon ? 'flex' : 'none';
+    });
+}
+
+// Карусель кастомных крафтов
+let currentCustomCraft = 0;
+
+function changeCustomCraft(direction) {
+    const containers = document.querySelectorAll('#custom-crafts .weapon-container');
+    
+    currentCustomCraft += direction;
+    
+    if (currentCustomCraft < 0) {
+        currentCustomCraft = totalWeapons - 1;
+    } else if (currentCustomCraft >= totalWeapons) {
+        currentCustomCraft = 0;
+    }
+    
+    containers.forEach((container, index) => {
+        container.style.display = index === currentCustomCraft ? 'flex' : 'none';
     });
 }
 
