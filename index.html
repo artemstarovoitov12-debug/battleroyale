@@ -14,7 +14,7 @@
                 <div class="logo-text">Battle Royale</div>
             </a>
             <div class="nav-menu">
-                <div class="nav-btn" onclick="copyIP()">📋 IP Сервера</div>
+                <div class="nav-btn" id="nav-ip-btn" onclick="copyIPFromNav()">📋 IP Сервера</div>
                 <a href="#instructions" class="nav-btn">Инструкция</a>
                 <a                 <a href="#resources" class="nav-btn">Ресурс-паки</a>
                 <a href="#custom" class="nav-btn">Кастомки</a>
@@ -33,9 +33,9 @@
             <div class="crown-icon">👑</div>
             <h1 class="hero-main-title">BATTLE ROYALE</h1>
         </div>
-        <div class="ip-wrapper" onclick="copyIP()">
+        <div class="ip-wrapper">
             <div class="ip-inner-container">
-                <span class="ip-value">ip.gg</span>
+                <span class="ip-value" id="center-ip-btn" onclick="copyIPFromCenter()">ip.gg</span>
                 <div class="version-container">
                     <div class="version-box">
                         <span class="version-label">Версия:</span>
@@ -122,7 +122,7 @@
             <div class="accordion-item">
                 <button class="accordion-header" onclick="toggleAccordion('legendary-weapons')">
                     <h3>Легендарные оружия</h3>
-                    <span class="accordion-arrow">v</span>
+                    <span class="accordion-arrow">^</span>
                 </button>
                 <div class="accordion-content" id="legendary-weapons">
                     <div class="weapon-container">
@@ -293,7 +293,7 @@
             <div class="accordion-item">
                 <button class="accordion-header" onclick="toggleAccordion('custom-crafts')">
                     <h3>Кастомные крафты</h3>
-                    <span class="accordion-arrow">v</span>
+                    <span class="accordion-arrow">^</span>
                 </button>
                 <div class="accordion-content" id="custom-crafts">
                     <div class="weapon-container">
