@@ -13,6 +13,31 @@ body {
     background-color: #fcffa4;
     color: #000;
     min-height: 100vh;
+    animation: body-explosion 0.6s ease-out;
+}
+
+@keyframes body-explosion {
+    0% { 
+        opacity: 0;
+        transform: scale(2);
+        filter: blur(50px);
+    }
+    50% { 
+        opacity: 0.5;
+        transform: scale(0.95);
+        filter: blur(0);
+    }
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Скрываем все элементы до появления */
+header, .hero, .instructions, .game-modes, .resources, .custom-section, .discord-section, footer {
+    opacity: 0;
+    transform: translateY(80px) scale(0.92);
 }
 
 /* ===== HEADER ===== */
@@ -47,6 +72,12 @@ header {
     gap: 12px;
     text-decoration: none;
     color: #000;
+    animation: logo-slide-in 1s ease-out;
+}
+
+@keyframes logo-slide-in {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
 .logo-icon {
@@ -61,6 +92,13 @@ header {
     color: #000;
     text-transform: uppercase;
     letter-spacing: 3px;
+    animation: logo-text-fade 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes logo-text-fade {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .nav-menu {
@@ -77,17 +115,42 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
     border: none;
     color: #000;
     background: transparent;
     border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn.copied {
+    background: #4CAF50 !important;
+    color: #fff !important;
+    border-color: #4CAF50 !important;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.nav-btn:hover::before {
+    left: 100%;
 }
 
 .nav-btn:hover {
     background: #000;
     color: #fcffa4;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* Discord Button in Top Right */
@@ -101,14 +164,42 @@ header {
     border-radius: 8px;
     font-weight: bold;
     font-size: 0.9rem;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+    animation: discord-btn-slide-down 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes discord-btn-slide-down {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.discord-header-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.discord-header-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .discord-header-btn:hover {
     background: #4752c4;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(88,101,242,0.4);
 }
 
 /* ===== HERO SECTION ===== */
@@ -122,22 +213,71 @@ header {
     background-color: #fcffa4;
 }
 
-.hero-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 50px;
+header.visible {
+    animation: header-enter 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes header-enter {
+    0% { 
+        opacity: 0;
+        transform: translateY(-100px) scale(0.9);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(0) scale(1.02);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.hero.visible {
+    animation: hero-enter 5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes hero-enter {
+    0% { 
+        opacity: 0;
+        transform: translateY(150px) scale(0.85);
+        filter: blur(20px);
+    }
+    15% {
+        opacity: 0.3;
+        transform: translateY(50px) scale(0.95);
+        filter: blur(10px);
+    }
+    30% {
+        opacity: 0.6;
+        transform: translateY(-20px) scale(1.03);
+        filter: blur(5px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(10px) scale(0.98);
+        filter: blur(2px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 .crown-icon {
     font-size: 5.5rem;
     animation: crown-bounce 2s ease-in-out infinite;
+    display: inline-block;
+    filter: drop-shadow(0 0 20px rgba(255,215,0,0.6));
+}
+
+.hero-title {
+    text-align: center;
 }
 
 @keyframes crown-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.1); }
 }
 
 .hero-main-title {
@@ -147,17 +287,25 @@ header {
     text-transform: uppercase;
     letter-spacing: 12px;
     margin: 0;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+}
+
+@keyframes title-glow {
+    0%, 100% { text-shadow: 3px 3px 0 rgba(0,0,0,0.1), 0 0 10px rgba(255,255,0,0.3); }
+    50% { text-shadow: 3px 3px 0 rgba(0,0,0,0.1), 0 0 30px rgba(255,255,0,0.6); }
 }
 
 .ip-wrapper {
-    cursor: pointer;
+    cursor: default;
     padding: 20px;
     background: linear-gradient(145deg, #fcffa4, #fff9c4);
     border: 5px solid #000;
     border-radius: 25px;
-    transition: all 0.3s;
+    transition: all 0.4s;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.ip-wrapper:hover {
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
 }
 
 .ip-inner-container {
@@ -181,14 +329,47 @@ header {
     background: #fcffa4;
     text-decoration: none;
     box-shadow: inset 0 0 0 rgba(0,0,0,0);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.ip-value::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.ip-value:hover::before {
+    left: 100%;
 }
 
 .ip-value:hover {
     background: #fff9c4;
-    text-decoration: underline;
-    text-underline-offset: 10px;
-    text-decoration-thickness: 4px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2), inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.ip-value:active {
+    transform: scale(0.98);
+}
+
+.ip-value.copied {
+    animation: ip-copied 0.5s ease-in-out;
+    background: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+@keyframes ip-copied {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .version-container {
@@ -204,6 +385,18 @@ header {
     border-radius: 10px;
     background: #fcffa4;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: version-float 3s ease-in-out infinite;
+}
+
+@keyframes version-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.version-box:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .version-label {
@@ -228,22 +421,107 @@ header {
     margin-top: 80px;
     cursor: pointer;
     transition: all 0.3s;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
 }
 
 .scroll-indicator:hover {
     transform: translateY(5px);
+    animation-play-state: paused;
 }
 
 .scroll-arrow {
     font-size: 3.5rem;
     color: #000;
     font-weight: 900;
+    animation: arrow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
 }
 
 /* ===== INSTRUCTIONS SECTION ===== */
 .instructions {
     padding: 100px 20px;
     background-color: #fcffa4;
+    opacity: 0;
+    transform: translateX(-80px) scale(0.88);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.instructions.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.game-modes {
+    padding: 100px 20px;
+    background-color: #fcffa4;
+    opacity: 0;
+    transform: translateX(80px) scale(0.88);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.game-modes.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.resources {
+    padding: 100px 20px;
+    background-color: #fcffa4;
+    opacity: 0;
+    transform: translateY(80px) rotateX(10deg);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.resources.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+.custom-section {
+    padding: 100px 20px;
+    background-color: #fcffa4;
+    opacity: 0;
+    transform: translateY(-80px) rotateX(-10deg);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-section.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+.discord-section {
+    padding: 80px 20px;
+    background-color: #fcffa4;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.85) rotate(-3deg);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.discord-section.visible {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+footer {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+footer.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .section-title {
@@ -279,8 +557,8 @@ header {
     border-radius: 12px;
     border: 2px solid #000;
     opacity: 0;
-    transform: translateX(-30px);
-    transition: all 0.6s;
+    transform: translateX(-50px);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .step.visible {
@@ -322,10 +600,25 @@ header {
     text-align: left;
 }
 
+.step:nth-child(odd) {
+    transition-delay: 0.2s;
+}
+
+.step:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.step:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
 /* ===== GAME MODES SECTION ===== */
 .game-modes {
     padding: 100px 20px;
     background-color: #fcffa4;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modes-grid {
@@ -342,12 +635,19 @@ header {
     border-radius: 12px;
     text-align: center;
     border: 2px solid #000;
-    transition: all 0.3s;
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    transform: translateY(50px) rotate(2deg);
+}
+
+.mode-card.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
 }
 
 .mode-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 5px 5px 0 #000;
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 8px 8px 0 #000;
 }
 
 .mode-card h3 {
@@ -367,6 +667,14 @@ header {
 .resources {
     padding: 100px 20px;
     background-color: #fcffa4;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.resources.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .resources-grid {
@@ -383,17 +691,30 @@ header {
     border-radius: 12px;
     text-align: center;
     border: 2px solid #000;
-    transition: all 0.3s;
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+}
+
+.resource-card.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 5px 5px 0 #000;
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 8px 8px 0 #000;
 }
 
 .resource-icon {
     font-size: 2.5rem;
     margin-bottom: 15px;
+    animation: icon-bounce 2s ease-in-out infinite;
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .resource-card h3 {
@@ -422,17 +743,46 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-download::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.resource-download:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .resource-download:hover {
     background: #333;
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* ===== CUSTOM SECTION ===== */
 .custom-section {
     padding: 100px 20px;
     background-color: #fcffa4;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .accordion {
@@ -446,6 +796,14 @@ header {
     border-radius: 12px;
     margin-bottom: 20px;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.accordion-item.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .accordion-header {
@@ -457,11 +815,62 @@ header {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.accordion-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.9) 40%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.9) 60%, transparent 100%);
+    transition: left 1s ease-in-out;
+    z-index: 0;
+}
+
+.accordion-header:hover::before {
+    left: 100%;
+}
+
+.accordion-header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+    transition: width 0.5s;
+    z-index: 0;
+}
+
+.accordion-header:hover::after {
+    width: 100%;
 }
 
 .accordion-header:hover {
-    background: #f0f0f0;
+    background: #fafafa;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.accordion-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(0,0,0,0.05);
+    transition: width 0.3s;
+    z-index: 0;
+}
+
+.accordion-header:hover::before {
+    width: 100%;
 }
 
 .accordion-header h3 {
@@ -470,14 +879,27 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.accordion-header:hover {
+    background: #fff;
 }
 
 .accordion-arrow {
     font-size: 2rem;
     font-weight: 900;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     display: inline-block;
     line-height: 1;
+    position: relative;
+    z-index: 1;
+    transform: rotate(180deg);
+}
+
+.accordion-item.active .accordion-arrow {
+    transform: rotate(0deg);
 }
 
 .accordion-content {
@@ -613,6 +1035,12 @@ header {
     flex-shrink: 0;
     overflow: hidden;
     background: #e0e0e0;
+    animation: weapon-image-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes weapon-image-shimmer {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.05); }
 }
 
 .weapon-image-placeholder {
@@ -626,6 +1054,11 @@ header {
     height: 100%;
     object-fit: contain;
     display: block;
+    transition: transform 0.4s;
+}
+
+.weapon-image:hover img {
+    transform: scale(1.05);
 }
 
 .nav-arrow {
@@ -638,16 +1071,134 @@ header {
     height: 70px;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.nav-arrow:hover::before {
+    width: 200px;
+    height: 200px;
 }
 
 .nav-arrow:hover {
-    background: #f0f0f0;
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.nav-arrow:active {
+    transform: scale(0.95);
+}
+
+.weapon-info {
+    flex: 0 0 300px;
+}
+
+.weapon-name {
+    font-size: 1.7rem;
+    color: #000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.weapon-abilities h4 {
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.weapon-abilities p {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.carousel {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    gap: 20px;
+}
+
+.carousel-btn {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.carousel-btn:hover::before {
+    left: 100%;
+}
+
+.carousel-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.tab-card {
+    background: #fcffa4;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #000;
+    text-align: center;
+    transition: all 0.3s;
+    min-width: 250px;
 }
 
 .weapon-info {
@@ -730,6 +1281,9 @@ header {
     padding: 80px 20px;
     background-color: #fcffa4;
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .discord-btn {
@@ -743,15 +1297,60 @@ header {
     border-radius: 8px;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-transform: uppercase;
     letter-spacing: 2px;
     border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.discord-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.discord-btn:hover::before {
+    width: 400px;
+    height: 400px;
 }
 
 .discord-btn:hover {
     background: #4752c4;
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(88,101,242,0.5);
+}
+
+.discord-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.discord-btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.discord-btn:hover {
+    background: #4752c4;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(88,101,242,0.5);
 }
 
 /* ===== FOOTER ===== */
@@ -760,6 +1359,14 @@ footer {
     background: #000;
     text-align: center;
     color: #fcffa4;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+footer.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 footer p {
@@ -787,8 +1394,9 @@ footer a:hover {
     border-radius: 8px;
     font-weight: bold;
     transform: translateX(200%);
-    transition: transform 0.3s;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 .notification.show {
